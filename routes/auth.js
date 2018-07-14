@@ -14,8 +14,10 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-  const nameInput = req.body.name;
+  const nameInput = req.body.firstName;
+  const lastNameInput = req.body.lastName;
   const emailInput = req.body.email;
+  const phoneNumber = req.body.phoneNumber;
   const passwordInput = req.body.password;
 
   if (emailInput === '' || passwordInput === '') {
@@ -43,6 +45,8 @@ router.post('/signup', (req, res, next) => {
 
     const userSubmission = {
       name: nameInput,
+      lastName: lastNameInput,
+      phone: phoneNumber,
       email: emailInput,
       password: hashedPass
     };
@@ -56,9 +60,15 @@ router.post('/signup', (req, res, next) => {
         });
         return;
       }
-
+    })
+    .then((userFromDb) => {
+      console.log("user from db info after saving new user ============== ", userFromDb);
+      req.session.currentUser = userFromDb;
       res.redirect('/');
-    });
+    })
+    .catch((err) => {
+      next(err);
+    })
   });
 });
 
@@ -95,6 +105,7 @@ router.post('/login', (req, res, next) => {
     }
 
     req.session.currentUser = theUser;
+    console.log("the user on log in ----------------- ", theUser)
     res.redirect('/');
   });
 });

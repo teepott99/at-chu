@@ -6,7 +6,7 @@
   </p>
 {{/if}}
 
-<form action="/login" method="post">
+{{!-- <form action="/login" method="post">
   <div>
     <input type="email" name="email" id="email-input"
       placeholder="Email">
@@ -18,6 +18,18 @@
   </div>
 
   <button> Log In </button>
+</form> --}}
+
+<form class="ui form" action="/login" method="post">
+  <div class="field">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Phone Number(optional)">
+  </div>
+  <button class="ui button" type="submit">Submit</button>
 </form>
 
 <p>
