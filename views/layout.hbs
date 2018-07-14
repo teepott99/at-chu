@@ -6,10 +6,66 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    {{#if isUserLoggedIn }}
+    <nav>
+      <div class="ui secondary  menu">
+        <a href="/" class="item">
+          Home
+        </a>
+        <a href="/notifications" class="item">
+          Notifications
+        </a>
+        <a href="/friends" class="item">
+          Friends
+        </a>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+        <a href="/logout" class="ui item">
+          Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+  {{else}}
+  <nav>
+    <div class="ui secondary  menu">
+      <a href="/" class="item">
+        Home
+      </a>
+      <a href="/login" class="item">
+        Log In
+      </a>
+      <a href="/signup" class="item">
+        Signup
+      </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+        </div>
+      </div>
+      <a href="/logout" class="ui item">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+{{/if}}
+
+
+
 
     {{{body}}}
 
     <footer>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
       <script src='/javascripts/script.js'></script>
     </footer>
   </body>

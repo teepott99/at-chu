@@ -1,6 +1,4 @@
 <!-- views/index.hbs -->
-<p> Welcome to {{ title }}. </p>
-
 {{#if isUserLoggedIn }}
   <p> Hello, {{ currentUserInfo.name }}. </p>
 {{/if}}
@@ -8,8 +6,22 @@
 <nav>
   <ul>
     {{#if isUserLoggedIn }}
-     <li> <a href="/dashboard"> User Page </a> </li>
-      <li> <a href="/logout"> Log Out </a> </li>
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{!-- Home page if NOT LOGGED IN --}}
     {{else}}
       <li> <a href="/signup"> Sign Up </a> </li>
       <li> <a href="/login"> Log In </a> </li>
