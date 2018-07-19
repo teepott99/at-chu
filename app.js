@@ -13,7 +13,7 @@ const path         = require('path');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/at-chu-project', {useMongoClient: true})
+  .connect('mongodb://heroku_zc95wz3q:drsm9fnc6thuhjikddp6eib64q@ds243491.mlab.com:43491/heroku_zc95wz3q', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
