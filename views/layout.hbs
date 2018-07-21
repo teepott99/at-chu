@@ -10,7 +10,7 @@
     {{#if user }}
     <nav>
       <div class="ui secondary  menu">
-        <a href="/profile/:name" class="item">
+        <a href="/profile/" class="item">
           Home
         </a>
         <a href="/notifications" class="item">
@@ -19,7 +19,7 @@
         <a href="/friends" class="item">
           Friends
         </a>
-        <a href="/profile/:name" class="item">
+        <a href="/profile/" class="item">
           Profile
         </a>
       <div class="right menu">
@@ -35,6 +35,11 @@
       </div>
     </div>
   </nav>
+
+
+
+
+  
   {{else}}
   <nav>
     <div class="ui secondary  menu">
@@ -51,7 +56,13 @@
       <div class="item">
         <div class="ui icon input">
           <input type="text" placeholder="Search...">
-            <i class="search link icon"></i>
+        {{!-- <select class="ui compact selection dropdown">
+          <option value="all">All</option>
+          <option selected="" value="articles">Users</option>
+          <option value="number">Phone Number</option>
+          <option value="email">Email</option>
+        </select> --}}
+        <div class="ui button">Search</div>
         </div>
       </div>
     </div>

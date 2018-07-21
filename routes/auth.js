@@ -88,10 +88,7 @@ authRoutes.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-//PRIVATE PAGE EXAMPLE - Using for Profile Page
-authRoutes.get("/profile/", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("profile", { user: req.user });
-});
+
 
 //Logout
 authRoutes.get("/logout", (req, res) => {

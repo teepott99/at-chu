@@ -1,17 +1,34 @@
-<p> Hello, {{ currentUserInfo.name }}. </p>
+<!-- views/profile.hbs -->
+<div>
+{{#if user}}
+
+<p> Hello, {{user.name}}. </p>
 
 
 <div>
-  <form class="ui form" action="/" method="post">
+  <form class="ui form" action="/profile" method="post">
+
     <div class="field">
+      
+      <label>Who are you?</label>
+      <input type="text" name="user">
+    </div>
+
+    <div class="field">
+
       <label>Where are you?</label>
-      <input type="location" name="location" placeholder="Miami, Florida">
+      <input type="text" name="location" placeholder="Miami, Florida">
+    </div>
+    <div class="field">
       <label>Who're you thinking of?</label>
-      <input type="name" name="taggedUser" placeholder="Name">
+    <div class="ui left icon input">
+      <input type="text" name="tagged" placeholder="Search users...">
+      <i class="users icon"></i>
+    </div>
     </div>
     <div class="field">
       <label>Where are they?</label>
-      <input type="location" name="tagLocation" placeholder="Sydney, Australia">
+      <input type="text" name="tagLocation" placeholder="Sydney, Australia">
     </div>
     <div class="field">
       <label>Anything else? <i>Optional.</i></label>
@@ -21,16 +38,32 @@
   </form>
 </div>
 
-<input type="hidden" name="userId" value="{{ theLaunderer._id }}">
+
 
 <div class="posts-wrapper"> 
   {{#each posts}}
     <div class="post-item">
-      <img src="{{this.imgPath}}" alt="">
+      
       <h4>{{this.name}} in {{this.location}} is thinking of {{this.taggedName}} in {{this.tagLocation}}</h4>
       <p>{{this.comment}}</p>
     </div>
   {{else}}
-    <p>There are no posts yet! :(</p>
+    <p>There are no posts yet!</p>
   {{/each}}
+
+{{else}}
+
+<div class="posts-wrapper"> 
+  {{#each posts}}
+    <div class="post-item">
+      
+      <h4>{{this.name}} in {{this.location}} is thinking of {{this.taggedName}} in {{this.tagLocation}}</h4>
+      <p>{{this.comment}}</p>
+    </div>
+  {{else}}
+    <p>There are no posts yet!</p>
+  {{/each}}
+</div>
+
+{{/if}}
 </div>

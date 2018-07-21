@@ -106,7 +106,6 @@ app.use(passport.session());
 
 //Confirm currentUser is logged in. 
 app.use((req, res, next) => {
-  console.log('kd;akd;ak;dka;kda;', req.session.currentUser)
   if(req.user){
     res.locals.user = req.user;
   }

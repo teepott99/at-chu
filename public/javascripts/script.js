@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  console.log('IronGenerator JS imported successfully!');
-
 }, false);
 
-
+$('.menu-class.sidebar')
+  .sidebar('setting', 'transition', 'overlay')
+  .sidebar('toggle')
+;
 
 
 
