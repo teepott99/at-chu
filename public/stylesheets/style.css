@@ -4,4 +4,10 @@ body {
 a {
   color: #00B7FF; }
 
+#mapid {
+  height: 300px; }
+
+.style-card {
+  margin: 20px; }
+
 /*# sourceMappingURL=style.css.map */

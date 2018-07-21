@@ -1,49 +1,55 @@
 <!-- views/profile.hbs -->
 <div>
-{{#if user}}
+ 
+ <div id="mapdiv">
+   <div id="mapid"></div>
+ </div>
+ 
 
-<p> Hello, {{user.name}}. </p>
+  {{#if user}}
+
+  <p> Hello, {{user.name}}. </p>
 
 
-<div>
-  <form class="ui form" action="/profile" method="post">
+  <div>
+    <form class="ui form" action="/profile" method="post">
 
-    <div class="field">
-      
-      <label>Who are you?</label>
-      <input type="text" name="name">
-    </div>
+      <div class="field">
+        
+        <label>Who are you?</label>
+        <input type="text" name="name">
+      </div>
 
-    <div class="field">
+      <div class="field">
 
-      <label>Where are you?</label>
-      <input type="text" name="location" placeholder="Miami, Florida">
-    </div>
-    <div class="field">
-      <label>Who're you thinking of?</label>
-    {{!-- <div class="ui left icon input"> --}}
-      <input type="text" name="tagged" placeholder="Search users...">
-      {{!-- <i class="users icon"></i> --}}
-    {{!-- </div> --}}
-    </div>
-    <div class="field">
-      <label>Where are they?</label>
-      <input type="text" name="tagLocation" placeholder="Sydney, Australia">
-    </div>
-    <div class="field">
-      <label>Anything else? <i>Optional.</i></label>
-      <input type="text" name="comment" placeholder="Miss you!">
-    </div>
-    <button class="ui button" type="submit">Post!</button>
-  </form>
-</div>
+        <label>Where are you?</label>
+        <input type="text" name="location" placeholder="Miami, Florida">
+      </div>
+      <div class="field">
+        <label>Who're you thinking of?</label>
+      {{!-- <div class="ui left icon input"> --}}
+        <input type="text" name="tagged" placeholder="Search users...">
+        {{!-- <i class="users icon"></i> --}}
+      {{!-- </div> --}}
+      </div>
+      <div class="field">
+        <label>Where are they?</label>
+        <input type="text" name="tagLocation" placeholder="Sydney, Australia">
+      </div>
+      <div class="field">
+        <label>Anything else? <i>Optional.</i></label>
+        <input type="text" name="comment" placeholder="Miss you!">
+      </div>
+      <button class="ui button" type="submit">Post!</button>
+    </form>
+  </div>
 
 {{/if}}
 
 
-<br class="ui cards">
+<div class="ui cards">
   {{#each posts}}
-  <div class="card">
+  <div class="card style-card">
     <div class="content">
       {{!-- <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg"> --}}
       <div class="header">
