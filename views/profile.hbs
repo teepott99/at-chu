@@ -11,7 +11,7 @@
     <div class="field">
       
       <label>Who are you?</label>
-      <input type="text" name="user">
+      <input type="text" name="name">
     </div>
 
     <div class="field">
@@ -21,10 +21,10 @@
     </div>
     <div class="field">
       <label>Who're you thinking of?</label>
-    <div class="ui left icon input">
+    {{!-- <div class="ui left icon input"> --}}
       <input type="text" name="tagged" placeholder="Search users...">
-      <i class="users icon"></i>
-    </div>
+      {{!-- <i class="users icon"></i> --}}
+    {{!-- </div> --}}
     </div>
     <div class="field">
       <label>Where are they?</label>
@@ -41,7 +41,7 @@
 {{/if}}
 
 
-<div class="ui cards">
+<br class="ui cards">
   {{#each posts}}
   <div class="card">
     <div class="content">
@@ -64,6 +64,8 @@
     </div> --}}
   </div>
   {{else}}
-  <p>There are no posts yet!</p>
+  <div>
+    <p>There are no posts yet!</p>
+  </div>
 {{/each}}
 </div>

@@ -7,7 +7,7 @@ const postSchema = new Schema({
   // { type: Schema.Types.ObjectId, ref: 'User', required: true },
   location: { type: String, required: true },
   
-  taggged: String,
+  tagged: String,
   // { type: Schema.Types.ObjectId, ref: 'User', required: true },
   
   tagLocation: { type: String, required: true }, 
