@@ -1,19 +1,22 @@
 require('dotenv').config();
 
-const bodyParser   = require('body-parser');
-const cookieParser = require('cookie-parser');
-const session      = require('express-session');
-const MongoStore   = require('connect-mongo')(session);
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
+const bodyParser    = require('body-parser');
+const cookieParser  = require('cookie-parser');
+const session       = require('express-session');
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const MongoStore    = require('connect-mongo')(session);
+const express       = require('express');
+const favicon       = require('serve-favicon');
+const hbs           = require('hbs');
+const mongoose      = require('mongoose');
+const logger        = require('morgan');
+const path          = require('path');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect(process.env.MONGODB_URI, {useMongoClient: true})
+  .connect('mongodb://localhost/at-chu-project', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -36,16 +39,51 @@ app.use(session({
   secret: '@chu',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 6000000000000000 },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 // 1 day
-  })
+  // //Sessions Removed
+  // cookie: { maxAge: 600000000000000000000000000000 },
+  // store: new MongoStore({
+  //   mongooseConnection: mongoose.connection,
+  //   ttl: 24 * 60 * 60 // 1 day
+  // })
 }));
+
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+passport.use(new LocalStrategy((email, password, next) => {
+  User.findOne({ email }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect email" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+}));
+
+//Passport integration
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //Confirm currentUser is logged in. 
 app.use((req, res, next) => {
+  console.log('kd;akd;ak;dka;kda;', req.session.currentUser)
   if (req.session.currentUser) {
+    console.log('here: ', req.session.currentUser)
     res.locals.currentUserInfo = req.session.currentUser;
     res.locals.isUserLoggedIn = true;
   } else {

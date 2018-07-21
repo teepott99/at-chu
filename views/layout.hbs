@@ -9,7 +9,7 @@
     {{#if isUserLoggedIn }}
     <nav>
       <div class="ui secondary  menu">
-        <a href="/" class="item">
+        <a href="/profile/:name" class="item">
           Home
         </a>
         <a href="/notifications" class="item">
@@ -17,6 +17,9 @@
         </a>
         <a href="/friends" class="item">
           Friends
+        </a>
+        <a href="/profile/:name" class="item">
+          Profile
         </a>
       <div class="right menu">
         <div class="item">
@@ -50,9 +53,6 @@
             <i class="search link icon"></i>
         </div>
       </div>
-      <a href="/logout" class="ui item">
-        Logout
-      </a>
     </div>
   </div>
 </nav>

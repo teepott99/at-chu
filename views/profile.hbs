@@ -1,0 +1,36 @@
+<p> Hello, {{ currentUserInfo.name }}. </p>
+
+
+<div>
+  <form class="ui form" action="/" method="post">
+    <div class="field">
+      <label>Where are you?</label>
+      <input type="location" name="location" placeholder="Miami, Florida">
+      <label>Who're you thinking of?</label>
+      <input type="name" name="taggedUser" placeholder="Name">
+    </div>
+    <div class="field">
+      <label>Where are they?</label>
+      <input type="location" name="tagLocation" placeholder="Sydney, Australia">
+    </div>
+    <div class="field">
+      <label>Anything else? <i>Optional.</i></label>
+      <input type="text" name="comment" placeholder="Miss you!">
+    </div>
+    <button class="ui button" type="submit">Post!</button>
+  </form>
+</div>
+
+<input type="hidden" name="userId" value="{{ theLaunderer._id }}">
+
+<div class="posts-wrapper"> 
+  {{#each posts}}
+    <div class="post-item">
+      <img src="{{this.imgPath}}" alt="">
+      <h4>{{this.name}} in {{this.location}} is thinking of {{this.taggedName}} in {{this.tagLocation}}</h4>
+      <p>{{this.comment}}</p>
+    </div>
+  {{else}}
+    <p>There are no posts yet! :(</p>
+  {{/each}}
+</div>
