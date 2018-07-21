@@ -77,11 +77,11 @@ passport.deserializeUser((id, cb) => {
 });
 
 app.use(flash());
-
 passport.use(new LocalStrategy({
+  passReqToCallback: true,
   usernameField:'email'
 },
-  (email, password, next) => {
+  (req, email, password, next) => {
   console.log("blah");
   User.findOne({ email }, (err, user) => {
     console.log('user:', user);
