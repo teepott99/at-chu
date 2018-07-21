@@ -13,6 +13,8 @@ const hbs           = require('hbs');
 const mongoose      = require('mongoose');
 const logger        = require('morgan');
 const path          = require('path');
+const flash = require('connect-flash');
+const User = require('./models/user');
 
 mongoose.Promise = Promise;
 mongoose
@@ -33,6 +35,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Express View engine setup
+app.use(require('node-sass-middleware')({
+  src:  path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public'),
+  sourceMap: true
+}));
+      
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+// default value for title local
+app.locals.title = '@chu';
+
 
 //session
 app.use(session({
@@ -58,8 +76,15 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-passport.use(new LocalStrategy((email, password, next) => {
+app.use(flash());
+
+passport.use(new LocalStrategy({
+  usernameField:'email'
+},
+  (email, password, next) => {
+  console.log("blah");
   User.findOne({ email }, (err, user) => {
+    console.log('user:', user);
     if (err) {
       return next(err);
     }
@@ -82,31 +107,21 @@ app.use(passport.session());
 //Confirm currentUser is logged in. 
 app.use((req, res, next) => {
   console.log('kd;akd;ak;dka;kda;', req.session.currentUser)
-  if (req.session.currentUser) {
-    console.log('here: ', req.session.currentUser)
-    res.locals.currentUserInfo = req.session.currentUser;
-    res.locals.isUserLoggedIn = true;
-  } else {
-    res.locals.isUserLoggedIn = false;
+  if(req.user){
+    res.locals.user = req.user;
   }
+  // if (req.session.currentUser) {
+  //   // console.log('here: ', req.session.currentUser);
+  //   res.locals.currentUserInfo = req.session.currentUser;
+  //   res.locals.isUserLoggedIn = true;
+  // } else {
+  //   res.locals.isUserLoggedIn = false;
+  // }
   next();
 });
 
 
-// Express View engine setup
-app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  sourceMap: true
-}));
-      
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// default value for title local
-app.locals.title = '@chu';
 
 
 

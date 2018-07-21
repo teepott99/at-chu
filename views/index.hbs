@@ -1,6 +1,8 @@
 <!-- views/index.hbs -->
-{{#if isUserLoggedIn }}
-  <p> Hello, {{ currentUserInfo.name }}. </p>
+{{user.name}}
+
+{{#if user }}
+  <p> Hello, {{ user.name }}. </p>
  
 {{!-- Home page if NOT LOGGED IN --}}
 {{else}}
