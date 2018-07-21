@@ -38,32 +38,32 @@
   </form>
 </div>
 
-
-
-<div class="posts-wrapper"> 
-  {{#each posts}}
-    <div class="post-item">
-      
-      <h4>{{this.name}} in {{this.location}} is thinking of {{this.taggedName}} in {{this.tagLocation}}</h4>
-      <p>{{this.comment}}</p>
-    </div>
-  {{else}}
-    <p>There are no posts yet!</p>
-  {{/each}}
-
-{{else}}
-
-<div class="posts-wrapper"> 
-  {{#each posts}}
-    <div class="post-item">
-      
-      <h4>{{this.name}} in {{this.location}} is thinking of {{this.taggedName}} in {{this.tagLocation}}</h4>
-      <p>{{this.comment}}</p>
-    </div>
-  {{else}}
-    <p>There are no posts yet!</p>
-  {{/each}}
-</div>
-
 {{/if}}
+
+
+<div class="ui cards">
+  {{#each posts}}
+  <div class="card">
+    <div class="content">
+      {{!-- <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg"> --}}
+      <div class="header">
+        {{this.name}} in {{this.location}}
+      </div>
+      <div class="meta">
+        is thinking of {{this.tagged}} in {{this.tagLocation}}
+      </div>
+      <div class="description">
+        {{this.comment}}
+      </div>
+    </div>
+    {{!-- <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Accept</div>
+        <div class="ui basic red button">Decline</div>
+      </div>
+    </div> --}}
+  </div>
+  {{else}}
+  <p>There are no posts yet!</p>
+{{/each}}
 </div>

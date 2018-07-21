@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   
-  user: String,
-  // { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  taggged: String,
+  name: String,
   // { type: Schema.Types.ObjectId, ref: 'User', required: true },
   location: { type: String, required: true },
+  
+  taggged: String,
+  // { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  
   tagLocation: { type: String, required: true }, 
   comment: { type: String },
   // img: {}

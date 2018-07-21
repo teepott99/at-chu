@@ -30,7 +30,7 @@ router.get('/profile', (req, res, next) =>{
 // });
 
 router.post('/profile', (req, res, next) => {
-  const name         = req.body.user;
+  const name         = req.body.name;
   const location     = req.body.location;
   const tagged       = req.body.tagged;
   const tagLocation  = req.body.tagLocation;
