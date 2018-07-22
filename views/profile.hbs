@@ -3,6 +3,7 @@
  
  <div id="mapdiv">
    <div id="mapid"></div>
+   <div id='geocoder' class='geocoder'></div>
  </div>
  
 
@@ -12,7 +13,7 @@
 
 
   <div>
-    <form class="ui form" action="/profile" method="post">
+    <form class="ui form"  id="postForm" action="/profile" method="post">
 
       <div class="field">
         
@@ -23,7 +24,7 @@
       <div class="field">
 
         <label>Where are you?</label>
-        <input type="text" name="location" placeholder="Miami, Florida">
+        <input type="text" name="location" placeholder="Miami, Florida" id="userLocation">
       </div>
       <div class="field">
         <label>Who're you thinking of?</label>
@@ -34,7 +35,7 @@
       </div>
       <div class="field">
         <label>Where are they?</label>
-        <input type="text" name="tagLocation" placeholder="Sydney, Australia">
+        <input type="text" id="tagLocation" name="tagLocation" placeholder="Sydney, Australia">
       </div>
       <div class="field">
         <label>Anything else? <i>Optional.</i></label>
