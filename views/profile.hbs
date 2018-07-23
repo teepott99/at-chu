@@ -18,13 +18,13 @@
       <div class="field">
         
         <label>Who are you?</label>
-        <input type="text" name="name">
+        <input type="text" name="name" value={{user.name}}>
       </div>
 
       <div class="field">
 
         <label>Where are you?</label>
-        <input type="text" name="location" placeholder="Miami, Florida" id="userLocation">
+        <input type="text" name="location" placeholder="Miami, Florida" id="address">
       </div>
       <div class="field">
         <label>Who're you thinking of?</label>
@@ -70,6 +70,11 @@
       </div>
     </div> --}}
   </div>
+<script>
+  callPopUp();
+</script>
+
+
   {{else}}
   <div>
     <p>There are no posts yet!</p>
