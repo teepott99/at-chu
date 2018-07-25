@@ -10,7 +10,7 @@ const postSchema = new Schema({
   
   name: {
     type: String,
-    // set: capitalize,
+    set: capitalize,
     required: true,
   },
   location: {
@@ -21,7 +21,7 @@ const postSchema = new Schema({
     coordinates: [Number]},
   tagged: {
     type: String,
-    // set: capitalize,
+    set: capitalize,
     required: true,
   },
   tagLocation: {

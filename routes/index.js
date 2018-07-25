@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user.js');
 const Post = require('../models/post.js');
+const { ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 // const uploadCloud = require('../config/cloudinary.js');
 const router  = express.Router();
 
@@ -8,11 +9,6 @@ const router  = express.Router();
 router.get('/', (req, res, next) => {
   res.redirect('/profile');
 });
-
-// //PRIVATE PAGE EXAMPLE - Using for Profile Page
-// authRoutes.get("/profile/", ensureLogin.ensureLoggedIn(), (req, res) => {
-//   ;
-// });
 
 router.get('/profile', (req, res, next) =>{
   Post.find()
@@ -23,11 +19,6 @@ router.get('/profile', (req, res, next) =>{
     console.log(error)
   })
 });
-
-// router.post('/profile', (req, res, next) => {
-//   console.log(req.body);
-//   res.render('profile');
-// });
 
 router.post('/profile', (req, res, next) => {
   const {name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment} =  req.body;
@@ -65,8 +56,19 @@ router.post('/profile', (req, res, next) => {
     .catch(error => {
       next(error)
     })
-  });
+});
 
+router.get('/delete/:id', ensureLoggedIn('/login'), (req, res, next) => {
+    // Finds post to delete and deletes it. G EZ
+    Post.findByIdAndRemove(req.params.id)
+        .then(post => {
+            res.redirect('/profile');
+        })
+        .catch(err => {
+            console.log('Error in deleting post:', err);
+            next();
+        });
+});
 
 
 module.exports = router;
