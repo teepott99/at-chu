@@ -30,23 +30,27 @@ router.get('/profile', (req, res, next) =>{
 // });
 
 router.post('/profile', (req, res, next) => {
-  const name         = req.body.name;
-  const location     = req.body.location;
-  const tagged       = req.body.tagged;
-  const tagLocation  = req.body.tagLocation;
-  const comment      = req.body.comment;
+  const {name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment} =  req.body;
   console.log(name, location, tagged, tagLocation, comment);
 
-  if (name === '' || location === '' || tagged === '' || tagLocation === '') {
+  if (name === '' || location === '' || tagged === '' || tagLocation === '' || userLatitude ==='' || userLongitude ==='' || tagLatitude ==='' || tagLongitude ==='' ) {
     res.render('profile', { message: 'Please review and ensure all required information is filled in.' });
     return;
   }
 
     const newPost = new Post({
       name,
-      location,
+      location: {
+        name: location,
+        type: "Point",
+        coordinates: [userLatitude, userLongitude],
+      },
       tagged,
-      tagLocation,
+      tagLocation: {
+        name: tagLocation,
+        type: "Point",
+        coordinates: [tagLatitude, tagLongitude],
+      },
       comment
     });
 
@@ -61,11 +65,7 @@ router.post('/profile', (req, res, next) => {
     .catch(error => {
       next(error)
     })
-  })
-  // .catch(error => {
-  //   next(error)
-  // });
-// });
+  });
 
 
 

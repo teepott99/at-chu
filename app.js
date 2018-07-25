@@ -15,6 +15,7 @@ const logger        = require('morgan');
 const path          = require('path');
 const flash = require('connect-flash');
 const User = require('./models/user');
+const geocoder = require('geocoder');
 
 mongoose.Promise = Promise;
 mongoose
@@ -109,25 +110,15 @@ app.use((req, res, next) => {
   if(req.user){
     res.locals.user = req.user;
   }
-  // if (req.session.currentUser) {
-  //   // console.log('here: ', req.session.currentUser);
-  //   res.locals.currentUserInfo = req.session.currentUser;
-  //   res.locals.isUserLoggedIn = true;
-  // } else {
-  //   res.locals.isUserLoggedIn = false;
-  // }
   next();
 });
-
-
-
-
-
 
 const index        = require('./routes/index');
 const authRoutes   = require('./routes/auth');
 app.use('/', index);
 app.use('/', authRoutes);
+
+
 
 
 

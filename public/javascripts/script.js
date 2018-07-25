@@ -13,11 +13,23 @@ L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjjvtbvb30qi82rlah9vvh16o/
 
 //Leaflet Geosearch Setup
 
-var polyline = L.polyline([
-  [25.7617, -80.1918],
-  [51.5074, -0.076132],
-]
-  ).addTo(map);
+function drawLine(userCord, tagCord){
+  console.log("Coordinates for draw", userCord, tagCord)
+
+  var polyline = L.polyline([
+    userCord,
+    tagCord,
+  ]
+    ).addTo(map);
+};
+
+
+
+// var polyline = L.polyline([
+//   [25.7617, -80.1918],
+//   [51.5074, -0.076132],
+// ]
+//   ).addTo(map);
 
 
 
@@ -37,106 +49,36 @@ function geocode() {
     function geocodeAddress(geocoder) {
       console.log("helly");
       var address = document.getElementById('address').value;
+      var address2 = document.getElementById('tagLocation').value;
       geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
-          // document.getElementById('latitude').value = results[0].geometry.location.lat();
-          // document.getElementById('longitude').value = results[0].geometry.location.lng();
+          document.getElementById('latitude').value = results[0].geometry.location.lat();
+          document.getElementById('longitude').value = results[0].geometry.location.lng();
     
           let address = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
     
           console.log(address);
-          // resultsMap.setCenter(results[0].geometry.location);
-          // var marker = new google.maps.Marker({
-          //   map: resultsMap,
-          //   position: results[0].geometry.location
-          // });
         } else {
           alert('Geocode was not successful for the following reason: ' + status);
         }
       });
+
+
+      geocoder.geocode({'address': address2}, function(results, status) {
+        if (status === 'OK') {
+
+          document.getElementById('tagLatitude').value = results[0].geometry.location.lat();
+          document.getElementById('tagLongitude').value = results[0].geometry.location.lng();
+    
+          let address = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+    
+          console.log(address2);
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+
+
+
      };
-    }  
-
-
-// document.addEventListener('submit', async (event) => {
-//   //   event.preventDefault();
-//   geocodeAddress(geocoder);
-// });
-
-
-// const results = document.getElementById('userLocation');
-
-// document.addEventListener('submit', async (event) => {
-//   //   event.preventDefault();
-// console.log(geocodeAddress(results));
-// });
-
-// function geocodeConvert(results, tagResults){
-//   const results = document.getElementById('userLocation');
-//   const tagResults = document.getElementById('tagLocation');
-  
-
-//   document.addEventListener('submit', async (event) => {
-//   event.preventDefault();
- 
-//   const userResults = await provider.search({ query: userInput.value });
-//   const tagResults = await provider.search({ query: tagInput.value });
-//   console.log(userResults, tagResults);
-// }
-
-
-
-
-// var searchControl = L.esri.Geocoding.geosearch().addTo(map);
-// // Adding layer groups to search control
-// var results = L.layerGroup.addTo(map);
-
-// searchControl.on('results', function(data){
-//   results.clearLayers();
-//   for(var i=data.results.length - 1; i>=0; i--){
-//     results.addLayer(L.marker(data.results[i].latlng));
-//   }
-// })
-
-
-
-// const { 
-//   GeoSearchControl, 
-//   OpenStreetMapProvider,
-// } = window.GeoSearch;
-
-// // const form = document.querySelector('form');
-// // const input = form.querySelector('input[type="text"]');
-// // const results = document.getElementById('results');
-
-// const provider = new OpenStreetMapProvider();
- 
-// const form = document.getElementById('postForm');
-// const userInput = form.getElementById('userLocation');
-// const tagInput = form.getElementById('tagLocation');
- 
-// form.addEventListener('submit', async (event) => {
-//   event.preventDefault();
- 
-//   const userResults = await provider.search({ query: userInput.value });
-//   const tagResults = await provider.search({ query: tagInput.value });
-//   console.log(userResults, tagResults); // » [{}, {}, {}, ...]
-// });
-
- 
-
-
-//NEED TO UPDATE ACTIVE NAV TAB PER PAGE
-// $('.tabular.menu .item').tab();
-
-// $('.item')
-
-// //Update Nav Bar Active class
-// const link = $("a[href$='']")
-
-// (function(e) {
-//   // e.preventDefault();
-//   $('.item').removeClass('active');
-//   $(this).addClass('active');
-// });
-
+    };

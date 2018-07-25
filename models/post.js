@@ -1,17 +1,36 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+function capitalize(val) {   
+  if (typeof val !== 'string') val = '';
+     return val.charAt(0).toUpperCase() + val.substring(1).toLowerCase(); 
+    };
+
 const postSchema = new Schema({
   
-  name: String,
-  // { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  location: { type: String, required: true },
-  
-  tagged: String,
-  // { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  
-  tagLocation: { type: String, required: true }, 
-  comment: { type: String },
+  name: {
+    type: String,
+    // set: capitalize,
+    required: true,
+  },
+  location: {
+    name: String,
+    // set: capitalize,
+    type: { type: String}, 
+    // required: true,
+    coordinates: [Number]},
+  tagged: {
+    type: String,
+    // set: capitalize,
+    required: true,
+  },
+  tagLocation: {
+    name: String,
+    // set: capitalize,
+    type: { type: String}, 
+    // required: true,
+    coordinates: [Number]},
+  comment: String ,
   // img: {}
 }, 
 {

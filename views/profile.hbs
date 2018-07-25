@@ -24,26 +24,36 @@
       <div class="field">
 
         <label>Where are you?</label>
-        <input type="text" name="location" placeholder="Miami, Florida" id="address">
+        <input type="text" name="location" placeholder="ex: Miami, Florida" id="address" >
       </div>
       <div class="field">
         <label>Who're you thinking of?</label>
       {{!-- <div class="ui left icon input"> --}}
-        <input type="text" name="tagged" placeholder="Search users...">
+        <input type="text" name="tagged" placeholder="Gary...?">
         {{!-- <i class="users icon"></i> --}}
       {{!-- </div> --}}
       </div>
       <div class="field">
         <label>Where are they?</label>
-        <input type="text" id="tagLocation" name="tagLocation" placeholder="Sydney, Australia">
+        <input type="text" id="tagLocation" name="tagLocation" placeholder="ex: Sydney, Australia" onBlur="geocode()">
       </div>
       <div class="field">
         <label>Anything else? <i>Optional.</i></label>
         <input type="text" name="comment" placeholder="Miss you!">
       </div>
+      <input type="hidden" id="latitude" name="userLatitude">
+      <input type="hidden" id="longitude" name="userLongitude">
+      
+      <input type="hidden" id="tagLatitude" name="tagLatitude">
+      <input type="hidden" id="tagLongitude" name="tagLongitude">
+      
+
+      
       <button class="ui button" type="submit">Post!</button>
     </form>
   </div>
+
+
 
 {{/if}}
 
@@ -54,25 +64,22 @@
     <div class="content">
       {{!-- <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg"> --}}
       <div class="header">
-        {{this.name}} in {{this.location}}
+        {{this.name}} in {{this.location.name}}
       </div>
       <div class="meta">
-        is thinking of {{this.tagged}} in {{this.tagLocation}}
+        is thinking of {{this.tagged}} in {{this.tagLocation.name}}
       </div>
       <div class="description">
         {{this.comment}}
       </div>
     </div>
-    {{!-- <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui basic green button">Accept</div>
-        <div class="ui basic red button">Decline</div>
-      </div>
-    </div> --}}
+
+    <input type="hidden" id="{{this._id}}_userLocation" value="{{this.location.coordinates}}">
+    <input type="hidden" id="{{this._id}}_tagLocation" value="{{this.tagLocation.coordinates}}">
+
   </div>
-<script>
-  callPopUp();
-</script>
+
+
 
 
   {{else}}
@@ -80,4 +87,5 @@
     <p>There are no posts yet!</p>
   </div>
 {{/each}}
+
 </div>
