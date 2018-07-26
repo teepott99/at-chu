@@ -3,7 +3,7 @@
  
  <div id="mapdiv">
    <div id="mapid"></div>
-   <div id='geocoder' class='geocoder'></div>
+   {{!-- <div id='geocoder' class='geocoder'></div> --}}
  </div>
  
 
@@ -76,8 +76,8 @@
 
     <a href="delete/{{this._id}}"><input type="button" value="Delete"></a>
 
-    <input type="hidden" id="{{this._id}}_userLocation" value="{{this.location.coordinates}}">
-    <input type="hidden" id="{{this._id}}_tagLocation" value="{{this.tagLocation.coordinates}}">
+    <input type="hidden" id="{{this._id}}_userLocation" value="{{this.location.coordinates}}" class="loc1">
+    <input type="hidden" id="{{this._id}}_tagLocation" value="{{this.tagLocation.coordinates}}" class="loc2">
 
 
 

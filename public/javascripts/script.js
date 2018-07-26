@@ -11,22 +11,15 @@ L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjjvtbvb30qi82rlah9vvh16o/
     accessToken: 'your.mapbox.access.token'
 }).addTo(map);
 
-//Leaflet Geosearch Setup
-
-// const userCord = [];
-// const tagCord = [];
-
+//Leaflet Draw Lines for map
 function drawLine(userCord, tagCord){
-//   var lol=new Array( "test", "test2" );
-// for( var x = 0; x < lol.length; x++ ) {
-//     number = parseInt(document.getElementById(lol[x]).value);
-// }
+  //Pull values currently strings and convert to number arrays
+  var userArray = userCord;
+  // .split(",").map(Number);
+  var tagArray = tagCord;
+  // .split(",").map(Number);
 
-  var userArray = userCord.split(",").map(Number);
-  console.log("userArray", userCord.split(",").map(Number));
-  var tagArray = tagCord.split(",").map(Number);
-
-  console.log("Coordinates for draw", userArray, tagArray)
+  console.log("Coordinates for draw", userArray, tagArray);
   var polyLine = L.polyline([
     userArray,
     tagArray,
@@ -35,15 +28,41 @@ function drawLine(userCord, tagCord){
 };
 
 var loc1 = document.getElementById("loc1").value;
+// console.log("class.value", $(".loc1").html())
 var loc2 = document.getElementById("loc2").value;
+
+// var loc10 = document.getElementsByClassName( 'loc1' ),
+//     names  = [].map.call(inputs, function( input ) {
+//         return input.value;
+//     })
+//     // .join( '|' );
+
+var elem = document.getElementsByClassName("loc1");
+var elem2 = document.getElementsByClassName("loc2");
+var userLocArray = [];
+var tagLocArray = [];
+for (var i = 0; i < elem.length; ++i) {
+  if (typeof elem[i].value !== "undefined") {
+//      names.push(elem[i].value.split(",").map(Number));
+//      console.log("elem, ", names)
+      drawLine(elem[i].value.split(",").map(Number), elem2[i].value.split(",").map(Number));
+    }
+  }
+// }
+var webcamval = names;
 
 drawLine(loc1, loc2);
 
-var polyline = L.polyline([
-  [25.7617, -80.1918],
-  [51.5074, -0.076132],
-]
-  ).addTo(map);
+
+
+
+
+
+// var polyline = L.polyline([
+//   [25.7617, -80.1918],
+//   [51.5074, -0.076132],
+// ]
+//   ).addTo(map);
 
 
 

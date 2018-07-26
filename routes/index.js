@@ -90,19 +90,4 @@ router.post('/profile/edit/:id', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-// const coordinateInfo  = axios.create({
-//   baseURL: 'process.env.MONGODB_URI',
-// });
-
-// function getCoordinates (){
-//   coordinateInfo.get('${stockTicket}/chart').then(response => {
-    
-//     this.location.coordinates = response.data;
-//     console.log("response data: ", response.data);
-//   }).catch(error =>( console.log(error) ));
-// }
-
-//   getCoordinates();
-
-
 module.exports = router;
