@@ -13,23 +13,44 @@ L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjjvtbvb30qi82rlah9vvh16o/
 
 //Leaflet Geosearch Setup
 
-function drawLine(userCord, tagCord){
-  console.log("Coordinates for draw", userCord, tagCord)
+// const userCord = [];
+// const tagCord = [];
 
-  var polyline = L.polyline([
-    userCord,
-    tagCord,
+function drawLine(userCord, tagCord){
+//   var lol=new Array( "test", "test2" );
+// for( var x = 0; x < lol.length; x++ ) {
+//     number = parseInt(document.getElementById(lol[x]).value);
+// }
+
+  var userArray = userCord.split(",").map(Number);
+  console.log("userArray", userCord.split(",").map(Number));
+  var tagArray = tagCord.split(",").map(Number);
+
+  console.log("Coordinates for draw", userArray, tagArray)
+  var polyLine = L.polyline([
+    userArray,
+    tagArray,
   ]
     ).addTo(map);
 };
 
+var loc1 = document.getElementById("loc1").value;
+var loc2 = document.getElementById("loc2").value;
+
+drawLine(loc1, loc2);
+
+var polyline = L.polyline([
+  [25.7617, -80.1918],
+  [51.5074, -0.076132],
+]
+  ).addTo(map);
 
 
-// var polyline = L.polyline([
-//   [25.7617, -80.1918],
-//   [51.5074, -0.076132],
-// ]
-//   ).addTo(map);
+
+
+
+
+
 
 
 

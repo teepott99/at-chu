@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user.js');
 const Post = require('../models/post.js');
+
 const { ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 // const uploadCloud = require('../config/cloudinary.js');
 const router  = express.Router();
@@ -58,6 +59,8 @@ router.post('/profile', (req, res, next) => {
     })
 });
 
+
+//Delete Post
 router.get('/delete/:id', ensureLoggedIn('/login'), (req, res, next) => {
     // Finds post to delete and deletes it. G EZ
     Post.findByIdAndRemove(req.params.id)
@@ -69,6 +72,37 @@ router.get('/delete/:id', ensureLoggedIn('/login'), (req, res, next) => {
             next();
         });
 });
+
+
+// Route to edit picture info
+router.post('/profile/edit/:id', ensureLoggedIn('/login'), (req, res, next) => {
+  // Destructures name of picture and description from req.body
+  const {name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment} =  req.body;
+  
+  Post.update({'_id': req.params.postId, 'pictures._id': req.params.picId}, {$set: {'pictures.$.picName': picName, 'pictures.$.description': description}})
+    .then(event => {
+          res.redirect('/profile')
+    })
+    .catch(err => {
+        console.log('Error in updating post: ', err);
+        next();
+    });
+});
+
+
+// const coordinateInfo  = axios.create({
+//   baseURL: 'process.env.MONGODB_URI',
+// });
+
+// function getCoordinates (){
+//   coordinateInfo.get('${stockTicket}/chart').then(response => {
+    
+//     this.location.coordinates = response.data;
+//     console.log("response data: ", response.data);
+//   }).catch(error =>( console.log(error) ));
+// }
+
+//   getCoordinates();
 
 
 module.exports = router;

@@ -58,12 +58,6 @@ app.use(session({
   secret: '@chu',
   resave: true,
   saveUninitialized: true,
-  // //Sessions Removed
-  // cookie: { maxAge: 600000000000000000000000000000 },
-  // store: new MongoStore({
-  //   mongooseConnection: mongoose.connection,
-  //   ttl: 24 * 60 * 60 // 1 day
-  // })
 }));
 
 passport.serializeUser((user, cb) => {
