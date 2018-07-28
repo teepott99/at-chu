@@ -4,7 +4,7 @@
 var map = L.map('mapid').setView([25.7617, -80.1918], 5);
 
 //Map Styles
-L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjjvtbvb30qi82rlah9vvh16o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGVlcG90dCIsImEiOiJjamp2dDZxYXI5dGV6M2twMTlnMnlkdW12In0.6mzsSubKcXrowebXFnNzgg', {
+L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjk4yusxk389t2rl520kd8yod/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGVlcG90dCIsImEiOiJjamp2dDZxYXI5dGV6M2twMTlnMnlkdW12In0.6mzsSubKcXrowebXFnNzgg', {
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: 'your.mapbox.access.token'
@@ -19,9 +19,10 @@ function drawLine(userCord, tagCord){
   var polyLine = L.polyline([
     userArray,
     tagArray,
-  ]
+  ], {color: 'yellow'}
     ).addTo(map);
 };
+
 
 
 // function callPopUp(coord) {
