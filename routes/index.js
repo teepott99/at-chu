@@ -75,20 +75,20 @@ router.get('/delete/:id', ensureLoggedIn('/login'), (req, res, next) => {
 
 
 // Route to edit post
-router.get('profile/edit', (req, res, next) => {
-  Post.findOne({_id: req.query.posts_id})
-  .then((posts) => {
-    res.render("post-edit", {posts})
+router.get('/edit/:id', (req, res, next) => {
+  Post.findById(req.params.id)
+  .then((post) => {
+    res.render("post-edit", {post})
   })
   .catch((error) => {
     console.log(error)
   })
 });
 
-router.post('/profile/edit', (req, res, next) => {
+router.post('/edit/:id', (req, res, next) => {
   const { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment } = req.body;
-  Post.update({_id: req.query.post_id}, { $set: { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment }}, { new: true })
-  .then((posts) => {
+  Post.findByIdAndUpdate(req.params.id, { $set: { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment }}, { new: true })
+  .then((post) => {
     // res.render("post-edit", {post})
     res.redirect('/profile')
   })
