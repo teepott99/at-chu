@@ -27,58 +27,38 @@ function drawLine(userCord, tagCord){
     ).addTo(map);
 };
 
-var loc1 = document.getElementById("loc1").value;
-// console.log("class.value", $(".loc1").html())
-var loc2 = document.getElementById("loc2").value;
 
-// var loc10 = document.getElementsByClassName( 'loc1' ),
-//     names  = [].map.call(inputs, function( input ) {
-//         return input.value;
-//     })
-//     // .join( '|' );
-
-var elem = document.getElementsByClassName("loc1");
-var elem2 = document.getElementsByClassName("loc2");
-var userLocArray = [];
-var tagLocArray = [];
-for (var i = 0; i < elem.length; ++i) {
-  if (typeof elem[i].value !== "undefined") {
-//      names.push(elem[i].value.split(",").map(Number));
-//      console.log("elem, ", names)
-      drawLine(elem[i].value.split(",").map(Number), elem2[i].value.split(",").map(Number));
-    }
-  }
-// }
-var webcamval = names;
-
-drawLine(loc1, loc2);
-
-
-
-
-
-
-// var polyline = L.polyline([
-//   [25.7617, -80.1918],
-//   [51.5074, -0.076132],
-// ]
-//   ).addTo(map);
-
-
-
-
-
-
-
-
-
-
-// function callPopUp() {
+// function callPopUp(coord) {
 //   var popup = L.popup()
-//   .setLatLng([25.7617, -80.1918])
+//   .setLatLng(coord)
 //   .setContent('{{this.name}} in {{this.location}}')
 //   .openOn(map);
 // }
+
+
+//Create all lines
+var elem = document.getElementsByClassName("loc1");
+var elem2 = document.getElementsByClassName("loc2");
+
+for (var i = 0; i < elem.length; ++i) {
+  if (typeof elem[i].value !== "undefined") {
+      drawLine(elem[i].value.split(",").map(Number), elem2[i].value.split(",").map(Number));
+      // callPopUp(elem[i].value.split(",").map(Number));
+    }
+  }
+// }
+// var webcamval = names;
+
+// drawLine(loc1, loc2);
+
+
+
+
+
+
+
+
+
 
 // Google Geocoder
 function geocode() {

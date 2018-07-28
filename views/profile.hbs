@@ -41,6 +41,8 @@
         <label>Anything else? <i>Optional.</i></label>
         <input type="text" name="comment" placeholder="Miss you!">
       </div>
+
+
       <input type="hidden" id="latitude" name="userLatitude">
       <input type="hidden" id="longitude" name="userLongitude">
       
@@ -75,15 +77,11 @@
     </div>
 
     <a href="delete/{{this._id}}"><input type="button" value="Delete"></a>
+    <a href="/profile/edit?post_id={{this._id}}"><input type="button" value="Edit"></a>
 
     <input type="hidden" id="{{this._id}}_userLocation" value="{{this.location.coordinates}}" class="loc1">
     <input type="hidden" id="{{this._id}}_tagLocation" value="{{this.tagLocation.coordinates}}" class="loc2">
 
-
-
-
-  <input type="hidden" id="loc1" value="{{this.location.coordinates}}">
-    <input type="hidden" id="loc2" value="{{this.tagLocation.coordinates}}">
 
 
 

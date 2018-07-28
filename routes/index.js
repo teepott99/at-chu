@@ -74,19 +74,27 @@ router.get('/delete/:id', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-// Route to edit picture info
-router.post('/profile/edit/:id', ensureLoggedIn('/login'), (req, res, next) => {
-  // Destructures name of picture and description from req.body
-  const {name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment} =  req.body;
-  
-  Post.update({'_id': req.params.postId, 'pictures._id': req.params.picId}, {$set: {'pictures.$.picName': picName, 'pictures.$.description': description}})
-    .then(event => {
-          res.redirect('/profile')
-    })
-    .catch(err => {
-        console.log('Error in updating post: ', err);
-        next();
-    });
+// Route to edit post
+router.get('profile/edit', (req, res, next) => {
+  Post.findOne({_id: req.query.posts_id})
+  .then((posts) => {
+    res.render("post-edit", {posts})
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+});
+
+router.post('/profile/edit', (req, res, next) => {
+  const { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment } = req.body;
+  Post.update({_id: req.query.post_id}, { $set: { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment }}, { new: true })
+  .then((posts) => {
+    // res.render("post-edit", {post})
+    res.redirect('/profile')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 });
 
 
