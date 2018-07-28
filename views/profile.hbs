@@ -1,17 +1,18 @@
 <!-- views/profile.hbs -->
-<div>
+
  
  <div id="mapdiv">
    <div id="mapid"></div>
  </div>
  
-
+<div></div>
   {{#if user}}
   <p> Hello, {{user.name}}. </p>
 
-  <div>
-    <form class="ui form"  id="postForm" action="/profile" method="post">
-
+  
+  <div id="hide-create">
+    <form class="ui equal width form card form-cards"  id="postForm" action="/profile" method="post">
+<div class="fields">
       <div class="field">
         <label>Who are you?</label>
         <input type="text" name="name" value={{user.name}}>
@@ -21,7 +22,8 @@
         <label>Where are you?</label>
         <input type="text" name="location" placeholder="ex: Miami, Florida" id="address" >
       </div>
-
+</div>
+<div class="fields">
       <div class="field">
         <label>Who're you thinking of?</label>
         <input type="text" name="tagged" placeholder="Gary...?">
@@ -32,7 +34,7 @@
         <label>Where are they?</label>
         <input type="text" id="tagLocation" name="tagLocation" placeholder="ex: Sydney, Australia" onBlur="geocode()">
       </div>
-
+</div>
       <div class="field">
         <label>Anything else? <i>Optional.</i></label>
         <input type="text" name="comment" placeholder="Miss you!">
@@ -52,10 +54,11 @@
 
 {{/if}}
 
-
-<div class="ui cards">
+<div id="hide-posts">
+<div class="ui four doubling cards" >
   {{#each posts}}
-  <div class="card style-card">
+  
+  <div class="centered card style-card ">
     <div class="content">
       <div class="header">
         {{this.name}} in {{this.location.name}}
@@ -67,11 +70,21 @@
         {{this.comment}}
       </div>
     </div>
-    
-    
-      <a href="delete/{{this._id}}"><input type="button" value="Delete"></a>
-      <a href="/edit/{{this._id}}"><input type="button" value="Edit"></a>
-    
+    <div class="extra content">
+      <div class="ui">
+        <a href="/edit/{{this._id}}" class="edit-link">
+          <div class="ui basic green button">
+            Edit
+          </div>
+        </a>
+        <a href="/delete/{{this._id}}" class="delete-link">
+          <div class="ui basic red button">
+            Delete
+          </div>
+        </a>
+
+      </div>
+    </div>
 
     <input type="hidden" id="{{this._id}}_userLocation" value="{{this.location.coordinates}}" class="loc1">
     <input type="hidden" id="{{this._id}}_tagLocation" value="{{this.tagLocation.coordinates}}" class="loc2">
@@ -85,4 +98,5 @@
 
 {{/each}}
 
+</div>
 </div>

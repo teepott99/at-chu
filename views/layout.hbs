@@ -18,7 +18,7 @@
     <h1>@chu</h1>
     {{#if user }}
     <nav>
-      <div class="ui secondary  menu">
+      <div class="ui secondary menu">
         <a href="/profile/" class="item">
           Home
         </a>
@@ -28,7 +28,24 @@
         <a href="/logout" class="ui item">
           Logout
         </a>
+
+    <div class="ui right secondary menu">
+      <a class="ui item" id="create-nav">
+        
+        Create Post
+        
+      </a>
+      <a id="posts-nav" class="ui item">
+        
+        View Posts
+        
+      </a>
+    </div>
+
+
+
       </div>
+    
     </div>
   </nav>
   {{else}}
@@ -66,6 +83,10 @@
       <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2bBVh8enWaREIqSaUHNfpLr8wsfYqoRk&callback=initMap">
       </script>
+    
+
+
+
       {{!-- Custom JS --}}
       <script src='/javascripts/script.js'></script>
     </footer>

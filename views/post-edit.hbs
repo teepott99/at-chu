@@ -1,9 +1,9 @@
 <!-- views/profile.hbs -->
 <div>
  
- <div id="mapdiv">
+ {{!-- <div id="mapdiv">
    <div id="mapid"></div>
- </div>
+ </div> --}}
 
 
 
@@ -11,8 +11,8 @@
 
   <div>
     {{#with post}}
-    <form class="ui form" action="/edit/{{_id}}" id="editPostForm" method="post">
-
+    <form class="ui equal width form" action="/edit/{{_id}}" id="editPostForm" method="post" id="edit-form">
+<div class="fields">
       <div class="field">
         
         <label>Who are you?</label>
@@ -25,10 +25,10 @@
         <input type="text" name="location" placeholder="ex: Miami, Florida" id="address" value="{{location.name}}"> 
         
       </div>
-      
+      </div>
       <input type="hidden" id="latitude" name="userLatitude" value="{{location.0.coordinates}}">
       <input type="hidden" id="longitude" name="userLongitude" value="{{location.1.coordinates}}">
-      
+      <div class="fields">
       <div class="field">
         <label>Who're you thinking of?</label>
       {{!-- <div class="ui left icon input"> --}}
@@ -40,7 +40,7 @@
         <label>Where are they?</label>
         <input type="text" id="tagLocation" name="tagLocation" placeholder="ex: Sydney, Australia" onBlur="geocode()" value="{{tagLocation.name}}">
       </div>
-
+      </div>
       <input type="hidden" id="tagLatitude" name="tagLatitude" value="{{tagLocation.0.coordinates}}">
       <input type="hidden" id="tagLongitude" name="tagLongitude" value="{{tagLocation.1.coordinates}}">
 

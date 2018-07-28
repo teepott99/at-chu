@@ -90,3 +90,18 @@ function geocode() {
 
      };
     };
+
+
+$('#create-nav').click(function(){
+  var txt = $("#hide-create").is(':visible') ? 'Create Post' : 'Hide Create Post';
+  $("#create-nav").text(txt);
+  $("#hide-create").slideToggle();
+});
+
+// $('#posts-nav').hide();
+
+$('#posts-nav').click(function(){
+  var txt = $("#hide-posts").is(':visible') ? 'View Posts' : 'Hide Posts';
+  $("#posts-nav").text(txt);
+  $("#hide-posts").slideToggle();
+});
