@@ -3,53 +3,46 @@
  
  <div id="mapdiv">
    <div id="mapid"></div>
-   {{!-- <div id='geocoder' class='geocoder'></div> --}}
  </div>
  
 
   {{#if user}}
-
   <p> Hello, {{user.name}}. </p>
-
 
   <div>
     <form class="ui form"  id="postForm" action="/profile" method="post">
 
       <div class="field">
-        
         <label>Who are you?</label>
         <input type="text" name="name" value={{user.name}}>
       </div>
 
       <div class="field">
-
         <label>Where are you?</label>
         <input type="text" name="location" placeholder="ex: Miami, Florida" id="address" >
       </div>
+
       <div class="field">
         <label>Who're you thinking of?</label>
-      {{!-- <div class="ui left icon input"> --}}
         <input type="text" name="tagged" placeholder="Gary...?">
         {{!-- <i class="users icon"></i> --}}
-      {{!-- </div> --}}
       </div>
+
       <div class="field">
         <label>Where are they?</label>
         <input type="text" id="tagLocation" name="tagLocation" placeholder="ex: Sydney, Australia" onBlur="geocode()">
       </div>
+
       <div class="field">
         <label>Anything else? <i>Optional.</i></label>
         <input type="text" name="comment" placeholder="Miss you!">
       </div>
-
 
       <input type="hidden" id="latitude" name="userLatitude">
       <input type="hidden" id="longitude" name="userLongitude">
       
       <input type="hidden" id="tagLatitude" name="tagLatitude">
       <input type="hidden" id="tagLongitude" name="tagLongitude">
-      
-
       
       <button class="ui button" type="submit">Post!</button>
     </form>
@@ -64,7 +57,6 @@
   {{#each posts}}
   <div class="card style-card">
     <div class="content">
-      {{!-- <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg"> --}}
       <div class="header">
         {{this.name}} in {{this.location.name}}
       </div>
@@ -75,22 +67,22 @@
         {{this.comment}}
       </div>
     </div>
-
-    <a href="delete/{{this._id}}"><input type="button" value="Delete"></a>
-    <a href="/edit/{{this._id}}"><input type="button" value="Edit"></a>
+    
+    
+      <a href="delete/{{this._id}}"><input type="button" value="Delete"></a>
+      <a href="/edit/{{this._id}}"><input type="button" value="Edit"></a>
+    
 
     <input type="hidden" id="{{this._id}}_userLocation" value="{{this.location.coordinates}}" class="loc1">
     <input type="hidden" id="{{this._id}}_tagLocation" value="{{this.tagLocation.coordinates}}" class="loc2">
 
-
-
-
-
   </div>
   {{else}}
-  <div>
-    <p>There are no posts yet!</p>
-  </div>
+
+    <div>
+      <p>There are no posts yet!</p>
+    </div>
+
 {{/each}}
 
 </div>

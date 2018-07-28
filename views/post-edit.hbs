@@ -10,42 +10,49 @@
 <h1 class="ui header">Edit Post</h1>
 
   <div>
-    <form class="ui form" action="/edit/{{post._id}}" id="editPostForm" method="post">
+    {{#with post}}
+    <form class="ui form" action="/edit/{{_id}}" id="editPostForm" method="post">
 
       <div class="field">
         
         <label>Who are you?</label>
-        <input type="text" name="name" value="{{post.name}}">
+        <input type="text" name="name" value="{{name}}">
       </div>
 
       <div class="field">
-
+        
         <label>Where are you?</label>
-        <input type="text" name="location" placeholder="ex: Miami, Florida" id="address" value="{{post.location.name}}">
+        <input type="text" name="location" placeholder="ex: Miami, Florida" id="address" value="{{location.name}}"> 
+        
       </div>
+      
+      <input type="hidden" id="latitude" name="userLatitude" value="{{location.0.coordinates}}">
+      <input type="hidden" id="longitude" name="userLongitude" value="{{location.1.coordinates}}">
+      
       <div class="field">
         <label>Who're you thinking of?</label>
       {{!-- <div class="ui left icon input"> --}}
-        <input type="text" name="tagged" placeholder="Gary...?" value="{{post.tagged}}">
+        <input type="text" name="tagged" placeholder="Gary...?" value="{{tagged}}">
         {{!-- <i class="users icon"></i> --}}
       {{!-- </div> --}}
       </div>
       <div class="field">
         <label>Where are they?</label>
-        <input type="text" id="tagLocation" name="tagLocation" placeholder="ex: Sydney, Australia" onBlur="geocode()" value="{{post.tagLocation.name}}">
+        <input type="text" id="tagLocation" name="tagLocation" placeholder="ex: Sydney, Australia" onBlur="geocode()" value="{{tagLocation.name}}">
       </div>
+
+      <input type="hidden" id="tagLatitude" name="tagLatitude" value="{{tagLocation.0.coordinates}}">
+      <input type="hidden" id="tagLongitude" name="tagLongitude" value="{{tagLocation.1.coordinates}}">
+
       <div class="field">
         <label>Anything else? <i>Optional.</i></label>
-        <input type="text" name="comment" placeholder="Miss you!" value="{{post.comment}}">
+        <input type="text" name="comment" placeholder="Miss you!" value="{{comment}}">
       </div>
-      <input type="hidden" id="latitude" name="userLatitude">
-      <input type="hidden" id="longitude" name="userLongitude">
-      
-      <input type="hidden" id="tagLatitude" name="tagLatitude">
-      <input type="hidden" id="tagLongitude" name="tagLongitude">
-      <button class="ui button" type="submit">Post!</button>
+
+      <button class="ui button" type="submit" >Post!</button>
     </form>
   </div>
+  {{/with}}
 
 
 

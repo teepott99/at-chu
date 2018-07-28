@@ -5,7 +5,6 @@ var map = L.map('mapid').setView([25.7617, -80.1918], 5);
 
 //Map Styles
 L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjjvtbvb30qi82rlah9vvh16o/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGVlcG90dCIsImEiOiJjamp2dDZxYXI5dGV6M2twMTlnMnlkdW12In0.6mzsSubKcXrowebXFnNzgg', {
-    // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: 'your.mapbox.access.token'
@@ -13,12 +12,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/teepott/cjjvtbvb30qi82rlah9vvh16o/
 
 //Leaflet Draw Lines for map
 function drawLine(userCord, tagCord){
-  //Pull values currently strings and convert to number arrays
-  var userArray = userCord;
-  // .split(",").map(Number);
-  var tagArray = tagCord;
-  // .split(",").map(Number);
 
+  var userArray = userCord;
+  var tagArray = tagCord;
   console.log("Coordinates for draw", userArray, tagArray);
   var polyLine = L.polyline([
     userArray,
@@ -42,23 +38,14 @@ var elem2 = document.getElementsByClassName("loc2");
 
 for (var i = 0; i < elem.length; ++i) {
   if (typeof elem[i].value !== "undefined") {
-      drawLine(elem[i].value.split(",").map(Number), elem2[i].value.split(",").map(Number));
+      //Pull values currently strings and convert to number arrays
+      var one = elem[i].value.split(",").map(Number);
+      var two = elem2[i].value.split(",").map(Number);
+      drawLine(one, two);
+      console.log("Is this working??", one, two);
       // callPopUp(elem[i].value.split(",").map(Number));
     }
   }
-// }
-// var webcamval = names;
-
-// drawLine(loc1, loc2);
-
-
-
-
-
-
-
-
-
 
 // Google Geocoder
 function geocode() {

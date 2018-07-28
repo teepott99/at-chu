@@ -86,8 +86,45 @@ router.get('/edit/:id', (req, res, next) => {
 });
 
 router.post('/edit/:id', (req, res, next) => {
-  const { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment } = req.body;
-  Post.findByIdAndUpdate(req.params.id, { $set: { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment }}, { new: true })
+//   const { name, tagged, comment } = req.body;
+  
+// // userLatitude = Number(req.body.userLatitude);
+// // userLongitude = Number(req.body.userLongitude);
+
+// // tagLatitude = Number(req.body.tagLatitude);
+// // tagLongitude = Number(req.body.tagLongitude);
+
+//   const location = {
+//       name: "location",
+//       type: "Point",
+//       coordinates: [userLatitude, userLongitude],
+//     };
+//   const tagLocation = {
+//       name: "tagLocation",
+//       type: "Point",
+//       coordinates: [tagLatitude, tagLongitude],
+//     };
+
+//     console.log(req.body.userLatitude)
+
+// Post.findByIdAndUpdate(req.params.id, { $set: { name, location, tagged, tagLocation, comment }}, { new: true })
+    // console.log(req.body.userLatitude)
+
+
+  const { name, tagged, comment, tagLocation,  tagLatitude, tagLongitude,location, userLatitude, userLongitude } =  req.body;
+  
+  console.log("req.body", req.body);
+  
+  // Post.findByIdAndUpdate(req.params.id, { $set: { name, tagged, comment, tagLocation, tagLatitude, tagLongitude,location, userLatitude, userLongitude}}, { new: true })
+  Post.findByIdAndUpdate(req.params.id, { $set: {name, tagged, comment, 'tagLocation.name': tagLocation,  'tagLocation.0.coordinates': tagLatitude, 'tagLocation.1.coordinates':tagLongitude,'location.name': location, 'location.0.coordinates':userLatitude, 'location.1.coordinates': userLongitude}}, { new: true })
+  
+
+
+  // {'meta.favs': 56}
+
+
+
+
   .then((post) => {
     res.redirect('/profile')
   })
