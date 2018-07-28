@@ -89,7 +89,6 @@ router.post('/edit/:id', (req, res, next) => {
   const { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment } = req.body;
   Post.findByIdAndUpdate(req.params.id, { $set: { name, location, tagged, tagLocation, userLatitude, userLongitude, tagLatitude, tagLongitude, comment }}, { new: true })
   .then((post) => {
-    // res.render("post-edit", {post})
     res.redirect('/profile')
   })
   .catch((error) => {
