@@ -22,7 +22,8 @@ html, body {
   position: absolute;
   bottom: 0;
   margin: 20px;
-  height: 190px; }
+  height: 20%;
+  display: flex; }
 
 #postForm {
   padding: 20px;

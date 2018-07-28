@@ -31,9 +31,10 @@ html, body {
   position: absolute;
   bottom: 0;
   margin: 20px;
-  height: 190px;
+  height: 20%;
   // margin-bottom: 80%;
   // display: none;
+  display: flex;
 
 }
 
@@ -63,6 +64,10 @@ html, body {
 #hide-posts {
   display: none;
 }
+
+// .flex-container {
+//   display:
+// }
 
 // //This MF isn't even working
 // .style-card {
